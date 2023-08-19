@@ -9,19 +9,21 @@ import SwiftUI
 
 struct HeaderView: View {
     var body: some View {
-        HStack {
-            Image("BookLogo")
-                .resizable()
-                .frame(width: 60, height: 60)
-            
-            Spacer()
-            
+        VStack {
             HStack {
-                NavigationLink(destination: NotificationsView(), label: {
-                    Image(systemName: "bell")
-                        .font(.system(size: 25))
-                        .foregroundColor(.orange)
-                })
+                Image("BookLogo")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                
+                Spacer()
+                
+                HStack {
+                    NavigationLink(destination: NotificationsView(), label: {
+                        Image(systemName: "bell")
+                            .font(.system(size: 25))
+                            .foregroundColor(.orange)
+                    })
+                }
             }
         }
     }

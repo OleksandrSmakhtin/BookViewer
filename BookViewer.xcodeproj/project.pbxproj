@@ -68,6 +68,10 @@
 		E0B1E69E2A7BB90500D0929F /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B1E69D2A7BB90500D0929F /* MainScreen.swift */; };
 		E0B76B0B2A80EFF000548AE3 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B76B0A2A80EFF000548AE3 /* SettingModel.swift */; };
 		E0CFA4C12A8A5A90009C3430 /* TextScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CFA4C02A8A5A90009C3430 /* TextScreen.swift */; };
+		E0D351AE2A8FC334009B3436 /* AuthorsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D351AD2A8FC334009B3436 /* AuthorsScreen.swift */; };
+		E0D351B02A8FC78E009B3436 /* AuthorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D351AF2A8FC78E009B3436 /* AuthorModel.swift */; };
+		E0D351B22A8FC855009B3436 /* AuthorsCatalogScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D351B12A8FC855009B3436 /* AuthorsCatalogScreen.swift */; };
+		E0D351B72A8FCB5D009B3436 /* AuthorsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D351B62A8FCB5D009B3436 /* AuthorsListView.swift */; };
 		E0EB74CC2A7BB2ED00F2A841 /* BookViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EB74CB2A7BB2ED00F2A841 /* BookViewerApp.swift */; };
 		E0EB74CE2A7BB2ED00F2A841 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EB74CD2A7BB2ED00F2A841 /* ContentView.swift */; };
 		E0EB74D02A7BB2EE00F2A841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EB74CF2A7BB2EE00F2A841 /* Assets.xcassets */; };
@@ -172,6 +176,10 @@
 		E0B1E69D2A7BB90500D0929F /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		E0B76B0A2A80EFF000548AE3 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		E0CFA4C02A8A5A90009C3430 /* TextScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextScreen.swift; sourceTree = "<group>"; };
+		E0D351AD2A8FC334009B3436 /* AuthorsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsScreen.swift; sourceTree = "<group>"; };
+		E0D351AF2A8FC78E009B3436 /* AuthorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorModel.swift; sourceTree = "<group>"; };
+		E0D351B12A8FC855009B3436 /* AuthorsCatalogScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsCatalogScreen.swift; sourceTree = "<group>"; };
+		E0D351B62A8FCB5D009B3436 /* AuthorsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsListView.swift; sourceTree = "<group>"; };
 		E0EB74C82A7BB2ED00F2A841 /* BookViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EB74CB2A7BB2ED00F2A841 /* BookViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewerApp.swift; sourceTree = "<group>"; };
 		E0EB74CD2A7BB2ED00F2A841 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -285,7 +293,7 @@
 		E02CE7472A7BC90D00ED7B17 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				E0CFA4BF2A8A5A77009C3430 /* Text */,
+				E0D351AC2A8FC323009B3436 /* Authors */,
 				E02F7AE22A815ADD0073520E /* Wishlist */,
 				E08B1BE22A7D2B2100063E3E /* Account */,
 				E02CE7482A7BC91500ED7B17 /* Home */,
@@ -311,6 +319,7 @@
 				E02F7AE32A815AF30073520E /* WishlistScreen.swift */,
 				E0FA644C2A83C06800E89F84 /* BooksScreen.swift */,
 				E0FA644E2A83C22400E89F84 /* UserBooksScreen.swift */,
+				E0CFA4C02A8A5A90009C3430 /* TextScreen.swift */,
 			);
 			path = Wishlist;
 			sourceTree = "<group>";
@@ -365,6 +374,7 @@
 				E0FA645D2A86533700E89F84 /* PropertyModel.swift */,
 				E08C6C152A8E106D004B356B /* JokesViewModel.swift */,
 				E03C6F502A8F663200D535FB /* QuotesViewModel.swift */,
+				E0D351AF2A8FC78E009B3436 /* AuthorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,12 +414,21 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		E0CFA4BF2A8A5A77009C3430 /* Text */ = {
+		E0D351AC2A8FC323009B3436 /* Authors */ = {
 			isa = PBXGroup;
 			children = (
-				E0CFA4C02A8A5A90009C3430 /* TextScreen.swift */,
+				E0D351AD2A8FC334009B3436 /* AuthorsScreen.swift */,
+				E0D351B12A8FC855009B3436 /* AuthorsCatalogScreen.swift */,
 			);
-			path = Text;
+			path = Authors;
+			sourceTree = "<group>";
+		};
+		E0D351B32A8FCB38009B3436 /* Authors */ = {
+			isa = PBXGroup;
+			children = (
+				E0D351B62A8FCB5D009B3436 /* AuthorsListView.swift */,
+			);
+			path = Authors;
 			sourceTree = "<group>";
 		};
 		E0EB74BF2A7BB2ED00F2A841 = {
@@ -491,6 +510,7 @@
 		E0EB74F62A7BB2F900F2A841 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E0D351B32A8FCB38009B3436 /* Authors */,
 				E0FA645F2A877E9000E89F84 /* Read */,
 				E0FA64522A84F6D600E89F84 /* Account */,
 				E02F7AE52A823CD90073520E /* Wishlist */,
@@ -766,6 +786,7 @@
 				E08C6C162A8E106D004B356B /* JokesViewModel.swift in Sources */,
 				E0EB74F82A7BB3F800F2A841 /* SplashScreen.swift in Sources */,
 				E02CE74A2A7BC92800ED7B17 /* AccountScreen.swift in Sources */,
+				E0D351B22A8FC855009B3436 /* AuthorsCatalogScreen.swift in Sources */,
 				E0EB74CE2A7BB2ED00F2A841 /* ContentView.swift in Sources */,
 				E0FE26042A7FBD8C00623C03 /* NavAccountModel.swift in Sources */,
 				E0FA64582A84F78E00E89F84 /* HelpFaqModel.swift in Sources */,
@@ -780,6 +801,7 @@
 				E08B1BFC2A7ED24300063E3E /* NotificationModel.swift in Sources */,
 				E0FA64562A84F72600E89F84 /* AccountHelpContactView.swift in Sources */,
 				E0132F722A7FCCDE00715060 /* CardsDoubleView.swift in Sources */,
+				E0D351B02A8FC78E009B3436 /* AuthorModel.swift in Sources */,
 				E0B76B0B2A80EFF000548AE3 /* SettingModel.swift in Sources */,
 				E0FA64542A84F6ED00E89F84 /* AccountHelpFaqView.swift in Sources */,
 				E0FA644F2A83C22400E89F84 /* UserBooksScreen.swift in Sources */,
@@ -796,6 +818,8 @@
 				E03C6F4F2A8F653100D535FB /* QuotesService.swift in Sources */,
 				E08B1BE62A7D2BA100063E3E /* HomeScreen.swift in Sources */,
 				E0939D0C2A7C2BC8003F6D1F /* SignInView.swift in Sources */,
+				E0D351AE2A8FC334009B3436 /* AuthorsScreen.swift in Sources */,
+				E0D351B72A8FCB5D009B3436 /* AuthorsListView.swift in Sources */,
 				E02CE7602A7BD53F00ED7B17 /* LoginButtonView.swift in Sources */,
 				E08C6C182A8E1931004B356B /* HomeJokesScreen.swift in Sources */,
 				E08B1BE42A7D2B3800063E3E /* DashboardScreen.swift in Sources */,

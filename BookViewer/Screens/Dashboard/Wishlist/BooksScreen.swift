@@ -30,17 +30,27 @@ struct BooksScreen: View {
             .padding()
             
             Picker(selection: $selectedOption, label: Text("")) {
-                 Text("Wishlist").tag(0)
-                 Text("Books").tag(1)
-             }
-             .padding()
-             .pickerStyle(SegmentedPickerStyle())
-            
-            if selectedOption == 0 {
-                WishlistScreen()
-            } else {
-                UserBooksScreen()
+                Text("Wishlist").tag(0)
+                Text("Books").tag(1)
+                Text("Create book").tag(2)
             }
+            .padding()
+            .pickerStyle(SegmentedPickerStyle())
+            
+            Spacer()
+            
+            switch selectedOption {
+            case 0:
+                WishlistScreen()
+            case 1:
+                UserBooksScreen()
+            case 2:
+                TextScreen()
+            default:
+                WishlistScreen()
+            }
+            
+            Spacer()
             
         }
         

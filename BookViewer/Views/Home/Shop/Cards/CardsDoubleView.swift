@@ -11,6 +11,15 @@ struct CardsDoubleView: View {
     
     let books: [Card]
     
+    func display() {
+        for (index, book) in books.enumerated() {
+            if index % 2 == 0 {
+                print(books[index].text)
+                print(books[index + 1].text)
+            }
+        }
+    }
+    
     var body: some View {
         ScrollView {
             ForEach(0..<books.count, id: \.self) { index in
@@ -32,12 +41,15 @@ struct CardsDoubleView: View {
                                      rating: books[index + 1].rating,
                                      details: books[index + 1].details,
                                      text: books[index + 1].text,
-                                     isPurchased: books[index].isPurchased
+                                     isPurchased: books[index + 1].isPurchased
                             )
                         }
                     }
                 }
             }
+        }
+        .onAppear {
+            display()
         }
     }
 }

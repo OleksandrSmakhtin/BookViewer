@@ -21,6 +21,7 @@ struct CardView: View {
     @State var isPurchased: Bool
     
     var truncatedTitle: String {
+        print(text)
         if title.count <= 30 {
             return title
         } else {
@@ -34,20 +35,21 @@ struct CardView: View {
     @State private var isReading = false
     
     func isPurchasedCheck() {
-         if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
-             do {
-                 var savedBoughtBooks = try JSONDecoder().decode([Card].self, from: savedData)
+        if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
+            do {
+                let savedBoughtBooks = try JSONDecoder().decode([Card].self, from: savedData)
 
-                 if let index = savedBoughtBooks.firstIndex(where: { $0.title == title }) {
-                     isPurchased = true
-                 }
-                 
-                 print("Checked purchased status. CardView.lineXX")
-             } catch {
-                 print("Error by receiving or checking purchased status. CardView.lineXX")
-             }
-         }
-     }
+                if savedBoughtBooks.contains(where: { $0.title == title }) {
+                    isPurchased = true
+                }
+
+                print("Checked purchased status. CardView.lineXX")
+            } catch {
+                print("Error by receiving or checking purchased status. CardView.lineXX")
+            }
+        }
+    }
+
 
     
     func purchaseBook() {
@@ -273,7 +275,8 @@ struct CardView: View {
                     .padding()
                 } else {
                     Button(action: {
-                        
+                        print("TEXT")
+                        print(text)
                     }, label: {
                         Text("Open book")
                             .frame(maxWidth: .infinity)

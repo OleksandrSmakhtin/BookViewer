@@ -35,7 +35,6 @@ class QuotesService {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            print(String(data: data, encoding: .utf8)) // Print the received data
             
             let quotesArray = try JSONDecoder().decode([Quote].self, from: data)
             return quotesArray

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0024CA62A90FDF0001576A6 /* FactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0024CA52A90FDF0001576A6 /* FactsService.swift */; };
+		E0024CA82A90FED4001576A6 /* FactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0024CA72A90FED4001576A6 /* FactsViewModel.swift */; };
 		E0132F722A7FCCDE00715060 /* CardsDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F712A7FCCDE00715060 /* CardsDoubleView.swift */; };
 		E0132F742A7FF71100715060 /* HomeTopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F732A7FF71100715060 /* HomeTopScreen.swift */; };
 		E0132F762A8015F500715060 /* AccountPersonalInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F752A8015F500715060 /* AccountPersonalInfoScreen.swift */; };
@@ -143,6 +145,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0024CA52A90FDF0001576A6 /* FactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsService.swift; sourceTree = "<group>"; };
+		E0024CA72A90FED4001576A6 /* FactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewModel.swift; sourceTree = "<group>"; };
 		E0132F712A7FCCDE00715060 /* CardsDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDoubleView.swift; sourceTree = "<group>"; };
 		E0132F732A7FF71100715060 /* HomeTopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopScreen.swift; sourceTree = "<group>"; };
 		E0132F752A8015F500715060 /* AccountPersonalInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPersonalInfoScreen.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 				E08C6C152A8E106D004B356B /* JokesViewModel.swift */,
 				E03C6F502A8F663200D535FB /* QuotesViewModel.swift */,
 				E0D351AF2A8FC78E009B3436 /* AuthorModel.swift */,
+				E0024CA72A90FED4001576A6 /* FactsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -553,6 +558,7 @@
 				E0FA64632A87847F00E89F84 /* ImagesService.swift */,
 				E08C6C132A8E0FDE004B356B /* JokesService.swift */,
 				E03C6F4E2A8F653100D535FB /* QuotesService.swift */,
+				E0024CA52A90FDF0001576A6 /* FactsService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -791,6 +797,7 @@
 				E0FE26042A7FBD8C00623C03 /* NavAccountModel.swift in Sources */,
 				E0FA64582A84F78E00E89F84 /* HelpFaqModel.swift in Sources */,
 				E0EB74CC2A7BB2ED00F2A841 /* BookViewerApp.swift in Sources */,
+				E0024CA62A90FDF0001576A6 /* FactsService.swift in Sources */,
 				E0FA645E2A86533700E89F84 /* PropertyModel.swift in Sources */,
 				E02CE7462A7BC8D800ED7B17 /* LoginScreen.swift in Sources */,
 				E0FA64642A87847F00E89F84 /* ImagesService.swift in Sources */,
@@ -830,6 +837,7 @@
 				E08B1BFA2A7ED22000063E3E /* NotificationsView.swift in Sources */,
 				E02F7AE42A815AF30073520E /* WishlistScreen.swift in Sources */,
 				E08B1BFF2A7ED31A00063E3E /* NotificationView.swift in Sources */,
+				E0024CA82A90FED4001576A6 /* FactsViewModel.swift in Sources */,
 				E0132F762A8015F500715060 /* AccountPersonalInfoScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

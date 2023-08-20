@@ -20,17 +20,30 @@ struct ReadView: View {
     
     @StateObject private var imagesViewModel = ImagesViewModel()
     
-    let text: String
+    var text: String
+    
+    var textWithDots: String {
+        var modifiedText = text
+        if !modifiedText.isEmpty {
+            let lastCharacter = modifiedText.last!
+            if lastCharacter != "." && lastCharacter != "!" && lastCharacter != "?" {
+                modifiedText.append(".")
+            }
+        }
+        return modifiedText
+    }
+    
     var sentences: [Sentence] {
         let pattern = "([^.!?]*[.!?])"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let matches = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
+        let matches = regex.matches(in: textWithDots, range: NSRange(textWithDots.startIndex..., in: textWithDots))
         
         return matches.map { match in
-            let range = Range(match.range, in: text)!
-            return Sentence(text: String(text[range]))
+            let range = Range(match.range, in: textWithDots)!
+            return Sentence(text: String(textWithDots[range]))
         }
     }
+    
     
     @State private var currentIndex = 0
     @State private var imageUrl: String?
@@ -70,6 +83,7 @@ struct ReadView: View {
                         
                     }
                     .onAppear {
+                        print(sentences)
                         Task {
                             if let fetchedImageUrl = await imagesViewModel.fetchImage(query: sentences[index].text) {
                                 imageUrl = fetchedImageUrl
@@ -139,7 +153,7 @@ class ImagesViewModel: ObservableObject {
 
 struct ReadView_Previews: PreviewProvider {
     static var previews: some View {
-        ReadView(text: "I walk in the park. The Kyiv. A lot of leaves are falling out from the trees. The people are walking in love. The boats are swimming through the Dnipro. I have seat on the stone!")
+        ReadView(text: "I walk in the park. Hi")
     }
 }
 

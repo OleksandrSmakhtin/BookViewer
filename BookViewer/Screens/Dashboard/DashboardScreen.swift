@@ -102,11 +102,10 @@ struct NavBarIpad: View {
                                 selectedScreen = 0
                             }
                         }, label: {
-                            Label("Home", systemImage: "house")
+                            Label("Home", systemImage: selectedScreen == 0 ? "house.fill" : "house")
                                 .font(.title2)
                                 .padding()
-                                .foregroundColor(selectedScreen == 0 ? Color.primary : Color.orange)
-                                .background(selectedScreen == 0 ? Color.orange : Color.clear)
+                                .bold(selectedScreen == 0 ? true : false)
                                 .cornerRadius(5)
                         })
                         
@@ -115,11 +114,10 @@ struct NavBarIpad: View {
                                 selectedScreen = 1
                             }
                         }, label: {
-                            Label("My books", systemImage: "text.book.closed")
+                            Label("My books", systemImage: selectedScreen == 1 ? "text.book.closed.fill" : "text.book.closed")
                                 .font(.title2)
                                 .padding()
-                                .foregroundColor(selectedScreen == 1 ? Color.primary : Color.orange)
-                                .background(selectedScreen == 1 ? Color.orange : Color.clear)
+                                .bold(selectedScreen == 1 ? true : false)
                                 .cornerRadius(5)
                         })
                         
@@ -128,11 +126,10 @@ struct NavBarIpad: View {
                                 selectedScreen = 2
                             }
                         }, label: {
-                            Label("Authors", systemImage: "person.text.rectangle")
+                            Label("Authors", systemImage: selectedScreen == 2 ? "person.text.rectangle.fill" : "person.text.rectangle")
                                 .font(.title2)
                                 .padding()
-                                .foregroundColor(selectedScreen == 2 ? Color.primary : Color.orange)
-                                .background(selectedScreen == 2 ? Color.orange : Color.clear)
+                                .bold(selectedScreen == 2 ? true : false)
                                 .cornerRadius(5)
                         })
                         
@@ -141,11 +138,10 @@ struct NavBarIpad: View {
                                 selectedScreen = 3
                             }
                         }, label: {
-                            Label("Account", systemImage: "person.crop.circle")
+                            Label("Account", systemImage: selectedScreen == 3 ? "person.crop.circle.fill" : "person.crop.circle")
                                 .font(.title2)
                                 .padding()
-                                .foregroundColor(selectedScreen == 3 ? Color.primary : Color.orange)
-                                .background(selectedScreen == 3 ? Color.orange : Color.clear)
+                                .bold(selectedScreen == 3 ? true : false)
                                 .cornerRadius(5)
                         })
                         Spacer()

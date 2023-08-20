@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Foundation
+import Dispatch
 
 struct HomeAllBooksScreen: View {
     
@@ -13,6 +15,11 @@ struct HomeAllBooksScreen: View {
     
     @StateObject private var jokesViewModel = JokesViewModel()
     @StateObject private var quotesViewModel = QuotesViewModel()
+    @StateObject private var factsViewModel = FactsViewModel()
+    
+    @State var jokes: [Card] = []
+    @State var quotes: [Card] = []
+    @State var facts: [Card] = []
     
     @State var query = ""
     
@@ -65,6 +72,90 @@ struct HomeAllBooksScreen: View {
         query = ""
     }
     
+    private func updateBooks(data: [Card]) {
+        if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
+            do {
+                var savedWishlist = try JSONDecoder().decode([Card].self, from: savedData)
+                
+                savedWishlist.append(contentsOf: data)
+                
+                let encodedData = try JSONEncoder().encode(savedWishlist)
+                DEFAULTS.set(encodedData, forKey: "BOUGHT_BOOKS_DATA")
+                
+                print("Saved to wishlist. CardView.line85")
+            } catch {
+                print("Error by receiving or saving wishlist. CardView.line48")
+            }
+        } else {
+            do {
+                let encodedData = try JSONEncoder().encode(data)
+                DEFAULTS.set(encodedData, forKey: "BOUGHT_BOOKS_DATA")
+                
+                print("Saved to wishlist. CardView.line56")
+            } catch {
+                print("Error by saving wishlist. CardView.line58")
+            }
+        }
+    }
+    
+    private func getBooks() {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        
+        // Jokes fetching
+        jokesViewModel.fetchJokes { [self] in
+            
+            if jokesViewModel.jokes.count != 0 {
+                jokes = jokesViewModel.jokes.map { joke -> Card in
+                    return Card(image: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781684122783/the-wackiest-joke-book-thatll-knock-knock-you-over-9781684122783_lg.jpg", title: "Random joke", price: "free", rating: "none", details: "Random joke with no author", text: joke.joke, isPurchased: true)
+                }
+                books.append(contentsOf: jokes)
+                
+                updateBooks(data: jokes)
+            }
+            
+        }
+        
+        dispatchGroup.enter()
+        
+        // Quotes fetching
+        
+        quotesViewModel.fetchQuotes { [self] in
+            
+            if quotesViewModel.quotes.count != 0 {
+                quotes = quotesViewModel.quotes.map { quote -> Card in
+                    return Card(image: "https://images.unsplash.com/photo-1528129550655-5123a0cd0c4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80", title: "Random quote", price: "free", rating: "none", details: quote.author, text: quote.quote, isPurchased: true)
+                }
+                books.append(contentsOf: quotes)
+                
+                updateBooks(data: quotes)
+                
+                
+            }
+            
+        }
+        
+        dispatchGroup.enter()
+        
+        // Facts fetching
+        
+        factsViewModel.fetchFacts { [self] in
+            if factsViewModel.facts.count != 0 {
+                facts = factsViewModel.facts.map { fact -> Card in
+                    return Card(image: "https://images.unsplash.com/photo-1511108690759-009324a90311?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80", title: "Random fact", price: "free", rating: "none", details: "Random fact", text: fact.fact, isPurchased: true)
+                }
+                books.append(contentsOf: facts)
+
+                updateBooks(data: facts)
+            }
+        }
+        
+        dispatchGroup.leave()
+        
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -106,82 +197,9 @@ struct HomeAllBooksScreen: View {
             
         }
         .onAppear {
-            jokesViewModel.fetchJokes { [self] in
-                
-                if jokesViewModel.jokes.count != 0 {
-                    let randomJokes = jokesViewModel.jokes.map { joke -> Card in
-                        return Card(image: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781684122783/the-wackiest-joke-book-thatll-knock-knock-you-over-9781684122783_lg.jpg", title: "Random joke", price: "free", rating: "none", details: "Random joke with no author", text: joke.joke, isPurchased: true)
-                    }
-                    books.append(contentsOf: randomJokes)
-                    
-                    if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
-                        do {
-                            var savedWishlist = try JSONDecoder().decode([Card].self, from: savedData)
-                            
-                            savedWishlist.append(contentsOf: randomJokes)
-                            
-                            let encodedData = try JSONEncoder().encode(savedWishlist)
-                            DEFAULTS.set(encodedData, forKey: "BOUGHT_BOOKS_DATA")
-                            
-                            print("Saved to wishlist. CardView.line56")
-                        } catch {
-                            print("Error by receiving or saving wishlist. CardView.line48")
-                        }
-                    } else {
-                        do {
-                            let encodedData = try JSONEncoder().encode(randomJokes)
-                            DEFAULTS.set(encodedData, forKey: "BOUGHT_BOOKS_DATA")
-                            
-                            print("Saved to wishlist. CardView.line56")
-                        } catch {
-                            print("Error by saving wishlist. CardView.line58")
-                        }
-                    }
-                    
-                    
-                }
-                
+            Task {
+                getBooks()
             }
-            // Jokes fetching end
-            
-            quotesViewModel.fetchQuotes { [self] in
-                
-                if quotesViewModel.quotes.count != 0 {
-                    let randomJokes = quotesViewModel.quotes.map { quote -> Card in
-                        return Card(image: "https://images.unsplash.com/photo-1528129550655-5123a0cd0c4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80", title: "Random quote", price: "free", rating: "none", details: quote.author, text: quote.quote, isPurchased: true)
-                    }
-                    books.append(contentsOf: randomJokes)
-                    
-                    if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
-                        do {
-                            var savedWishlist = try JSONDecoder().decode([Card].self, from: savedData)
-                            
-                            savedWishlist.append(contentsOf: randomJokes)
-                            
-                            let encodedData = try JSONEncoder().encode(savedWishlist)
-                            DEFAULTS.set(encodedData, forKey: "BOUGHT_BOOKS_DATA")
-                            
-                            print("Saved to wishlist. CardView.line56")
-                        } catch {
-                            print("Error by receiving or saving wishlist. CardView.line48")
-                        }
-                    } else {
-                        do {
-                            let encodedData = try JSONEncoder().encode(randomJokes)
-                            DEFAULTS.set(encodedData, forKey: "BOUGHT_BOOKS_DATA")
-                            
-                            print("Saved to wishlist. CardView.line56")
-                        } catch {
-                            print("Error by saving wishlist. CardView.line58")
-                        }
-                    }
-                    
-                    
-                }
-                
-            }
-            // Quotes fetching end
-            
         }
     }
     

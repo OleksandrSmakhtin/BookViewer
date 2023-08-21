@@ -14,6 +14,7 @@ struct HomeScreen: View {
     @StateObject private var jokesViewModel = JokesViewModel()
     
     @State private var fetchedJokes: [Card] = []
+    @State private var selectedPageId: Int = 0
     
     let cards: [Card] = [
         Card(image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Taras_Shevchenko_-_portrait_by_Ivan_Kramskoi.jpg/939px-Taras_Shevchenko_-_portrait_by_Ivan_Kramskoi.jpg", title: "The Thought. Taras Shevchecnko", price: "free", rating: "4.2", details: "Some details", text: "Water flows into the blue sea, It doesn't leak The Cossack is looking for his destiny, And there is no fate. The Cossack died before his eyes; The blue sea plays Cossack heart plays And the thought says: Where are you going without asking? To whom he left Father, old woman, A young girl? The wrong people are in a foreign country — It's hard to live with them! No one to cry with No talk. A Cossack is sitting on that side, The blue sea is playing. I thought fate would meet — There was grief. And cranes fly to themselves Home keys. The Cossack cries - beaten paths Overgrown with thorns.", isPurchased: false),
@@ -37,31 +38,72 @@ struct HomeScreen: View {
         Card(image: "https://cdn11.bigcommerce.com/s-83t5jdek/images/stencil/1280x1280/products/11088/88959/LOROCA018_low-res_v8_UF__92366.1654080991.jpg?c=2", title: "Still I Rise. Maya Angelou", price: "free", rating: "4.6", details: "Author: Maya Angelou", text: "You may write me down in history With your bitter, twisted lies, You may tread me in the very dirt But still, like dust, I’ll rise. Does my sassiness upset you? Why are you beset with gloom? ’Cause I walk like I’ve got oil wells Pumping in my living room. Just like moons and like suns, With the certainty of tides, Just like hopes springing high, Still I’ll rise. Did you want to see me broken? Bowed head and lowered eyes? Shoulders falling down like teardrops. Weakened by my soulful cries. Does my haughtiness offend you? Don’t you take it awful hard ’Cause I laugh like I’ve got gold mines Diggin’ in my own back yard. You may shoot me with your words, You may cut me with your eyes, You may kill me with your hatefulness, But still, like air, I’ll rise. Does my sexiness upset you? Does it come as a surprise That I dance like I’ve got diamonds At the meeting of my thighs? Out of the huts of history’s shame I rise Up from a past that’s rooted in pain I rise I’m a black ocean, leaping and wide, Welling and swelling I bear in the tide. Leaving behind nights of terror and fear I rise Into a daybreak that’s wondrously clear I rise Bringing the gifts that my ancestors gave, I am the dream and the hope of the slave. I rise I rise I rise.", isPurchased: false)
     ]
     
+    var recommendedCards: [Card] {
+        return [
+            Card(image: "https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80", title: "Fire and Ice. Robert Frost", price: "free", rating: "4.8", details: "Author: Robert Frost", text: "Some say the world will end in fire, Some say in ice. From what I’ve tasted of desire I hold with those who favor fire. But if it had to perish twice, I think I know enough of hate To know that for destruction ice Is also great, And would suffice.", isPurchased: false),
+            Card(image: "https://www.familius.com/wp-content/uploads/1660/88/9781641705721_3D-931x1024.png", title: "Stopping by Woods on a Snowy Evening. Robert Frost", price: "free", rating: "4.6", details: "Author: Robert Frost", text: "Whose woods these are I think I know. His house is in the village though; He will not see me stopping here To watch his woods fill up with snow. My little horse must think it queer To stop without a farmhouse near Between the woods and frozen lake The darkest evening of the year. He gives his harness bells a shake To ask if there is some mistake. The only other sound’s the sweep Of easy wind and downy flake. The woods are lovely, dark and deep, But I have promises to keep, And miles to go before I sleep, And miles to go before I sleep.", isPurchased: false)
+        ]
+    }
+    
+    private func changeView(id: Int) {
+        selectedPageId = id
+    }
+    
     var body: some View {
         NavigationStack {
             HeaderView()
+            HStack(spacing: 50) {
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        changeView(id: 0)
+                    }
+                }, label: {
+                    selectItem(selectedPageId: $selectedPageId, myId: 0, title: "General")
+                        .padding()
+                })
+                
+                Button(action: {
+                    withAnimation {
+                        changeView(id: 1)
+                    }
+                }, label: {
+                    selectItem(selectedPageId: $selectedPageId, myId: 1, title: "For you")
+                        .padding()
+                })
+                Spacer()
+            }
+            .padding()
+            
+            Divider()
             
             Spacer()
             
-            ScrollView {
-                CardsView(cards: cards)
-                
-                NavigationLink(destination: HomeAllBooksScreen(), label: {
-                    NavLinkView(icon: "arrow.forward", text: "Explore All", iconSize: 20)
-                })
-                
-                CardsView(cards: topCards)
-                
-                NavigationLink(destination: HomeTopScreen(), label: {
-                    NavLinkView(icon: "arrow.forward", text: "Top Charts", iconSize: 20)
-                })
-                
-                CardsView(cards: fetchedJokes)
-                
-                NavigationLink(destination: HomeJokesScreen(), label: {
-                    NavLinkView(icon: "arrow.forward", text: "Funny Jokes", iconSize: 20)
-                })
-                
+            if selectedPageId == 0 {
+                ScrollView {
+                    CardsView(cards: cards)
+                    
+                    NavigationLink(destination: HomeAllBooksScreen(), label: {
+                        NavLinkView(icon: "arrow.forward", text: "Explore All", iconSize: 20)
+                    })
+                    
+                    CardsView(cards: topCards)
+                    
+                    NavigationLink(destination: HomeTopScreen(), label: {
+                        NavLinkView(icon: "arrow.forward", text: "Top Charts", iconSize: 20)
+                    })
+                    
+                    CardsView(cards: fetchedJokes)
+                    
+                    NavigationLink(destination: HomeJokesScreen(), label: {
+                        NavLinkView(icon: "arrow.forward", text: "Funny Jokes", iconSize: 20)
+                    })
+                    
+                }
+            } else {
+                ScrollView {
+                    CardsDoubleView(books: recommendedCards)
+                }
             }
             
         }
@@ -77,6 +119,31 @@ struct HomeScreen: View {
         .padding()
     }
     
+}
+
+struct selectItem: View {
+    
+    @Binding var selectedPageId: Int
+    let myId: Int
+    let title: String
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .foregroundColor(.primary)
+                .font(.title2)
+                .bold(selectedPageId == myId ? true : false)
+            if selectedPageId == myId {
+                Rectangle()
+                    .foregroundColor(.orange)
+                    .frame(height: 3)
+            } else {
+                Rectangle()
+                    .frame(height: 0)
+            }
+        }
+        .frame(width: 100)
+    }
 }
 
 struct HomeScreen_Previews: PreviewProvider {

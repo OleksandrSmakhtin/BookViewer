@@ -50,8 +50,6 @@ struct CardView: View {
         }
     }
 
-
-    
     func purchaseBook() {
         
         isPurchased = true

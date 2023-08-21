@@ -15,19 +15,8 @@ struct BooksScreen: View {
         
         VStack {
             
-            HStack {
-                Image("BookLogo")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                
-                Spacer()
-                
-                Text("My books")
-                    .padding()
-                    .bold()
-                    .font(.title2)
-            }
-            .padding()
+            HeaderView()
+                .padding()
             
             Picker(selection: $selectedOption, label: Text("")) {
                 Text("Wishlist").tag(0)

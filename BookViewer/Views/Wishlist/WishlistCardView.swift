@@ -97,6 +97,8 @@ struct WishlistCardView: View {
                 print("Error by saving wishlist. CardView.line58")
             }
         }
+        
+        CardNotifications.shared.didPurchaseBook(bookTitle: title)
     }
     
     var body: some View {

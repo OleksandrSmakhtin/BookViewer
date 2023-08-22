@@ -23,7 +23,9 @@ struct UserBooksScreen: View {
                 for wish in savedWishlist {
                     if wish.title.lowercased() != "random joke" {
                         if wish.title.lowercased() != "random quote" {
-                            goodWishlist.append(wish)
+                            if wish.title.lowercased() != "random fact" {
+                                goodWishlist.append(wish)
+                            }
                         }
                     }
                 }

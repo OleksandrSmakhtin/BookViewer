@@ -10,6 +10,15 @@ import SwiftUI
 struct DashboardScreen: View {
     
     @State var selectedScreen = 0
+    @State var isTagOpened = false
+    @State var tagValue = ""
+    @State var resetTag = false
+    
+    private let tags: [Tag] = [
+        Tag(value: "Shevchenko"),
+        Tag(value: "John Donne"),
+        Tag(value: "Robert Frost")
+    ]
     
     var isOnIpad: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -24,16 +33,23 @@ struct DashboardScreen: View {
         VStack {
             if isOnIpad {
                 HStack {
-                    NavBarIpad(selectedScreen: $selectedScreen)
-                    switch selectedScreen {
-                    case 1:
-                        BooksScreen()
-                    case 2:
-                        AuthorsScreen()
-                    case 3:
-                        AccountScreen()
-                    default:
-                        HomeScreen()
+                    if isTagOpened {
+                        NavBarIpad(resetTag: $isTagOpened, selectedScreen: $selectedScreen)
+                        HomeAllBooksScreen(query: tagValue)
+                        TagsClosedBarIpad(isTagOpened: $isTagOpened)
+                    } else {
+                        NavBarIpad(resetTag: $isTagOpened, selectedScreen: $selectedScreen)
+                        switch selectedScreen {
+                        case 1:
+                            BooksScreen()
+                        case 2:
+                            AuthorsScreen()
+                        case 3:
+                            AccountScreen()
+                        default:
+                            HomeScreen()
+                        }
+                        TagsBarIpad(tags: tags, isTagOpened: $isTagOpened, tagValue: $tagValue)
                     }
                 }
                 .accentColor(.orange)
@@ -67,8 +83,92 @@ struct DashboardScreen: View {
     }
 }
 
+struct TagsBarIpad: View {
+    
+    let tags: [Tag]
+    @Binding var isTagOpened: Bool
+    @Binding var tagValue: String
+    
+    var body: some View {
+        
+        VStack {
+            Text("Featured tags")
+                .font(.title2)
+                .padding()
+                .bold()
+            HStack {
+                Divider()
+                VStack {
+                    ScrollView {
+                        ForEach(tags) { tag in
+                            Button(action: {
+                                withAnimation {
+                                    isTagOpened = true
+                                    tagValue = tag.value
+                                }
+                            }, label: {
+                                Text("#\(tag.value)")
+                                    .font(.title3)
+                                    .padding()
+                            })
+                        }
+                    }
+                    .padding()
+                }
+                .padding()
+            }
+        }
+        .padding()
+        
+    }
+    
+}
+
+struct TagsClosedBarIpad: View {
+    
+    @Binding var isTagOpened: Bool
+    
+    var body: some View {
+        VStack {
+            Text("Featured tags")
+                .font(.title2)
+                .padding()
+                .bold()
+            HStack {
+                Divider()
+                VStack {
+                    ScrollView {
+                        Button(action: {
+                            isTagOpened = false
+                        }, label: {
+                            HStack {
+                                Text("Return")
+                                Image(systemName: "return")
+                            }
+                            .padding()
+                            .font(.title3)
+                        })
+                        .padding()
+                    }
+                    .padding()
+                }
+                .padding()
+            }
+        }
+        .padding()
+    }
+    
+}
+
+struct Tag: Identifiable, Codable {
+    let id = UUID()
+    
+    let value: String
+}
+
 struct NavBarIpad: View {
     
+    @Binding var resetTag: Bool
     @Binding var selectedScreen: Int
     @State private var isNavDisplayed = false
     
@@ -99,6 +199,7 @@ struct NavBarIpad: View {
                     VStack(alignment: .leading, spacing: 30) {
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 0
                             }
                         }, label: {
@@ -111,6 +212,7 @@ struct NavBarIpad: View {
                         
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 1
                             }
                         }, label: {
@@ -123,6 +225,7 @@ struct NavBarIpad: View {
                         
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 2
                             }
                         }, label: {
@@ -135,6 +238,7 @@ struct NavBarIpad: View {
                         
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 3
                             }
                         }, label: {
@@ -155,6 +259,7 @@ struct NavBarIpad: View {
                     VStack(spacing: 30) {
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 0
                             }
                         }, label: {
@@ -165,6 +270,7 @@ struct NavBarIpad: View {
                         
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 1
                             }
                         }, label: {
@@ -175,6 +281,7 @@ struct NavBarIpad: View {
                         
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 2
                             }
                         }, label: {
@@ -185,6 +292,7 @@ struct NavBarIpad: View {
                         
                         Button(action: {
                             withAnimation {
+                                resetTag = false
                                 selectedScreen = 3
                             }
                         }, label: {

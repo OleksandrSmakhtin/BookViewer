@@ -78,6 +78,8 @@ struct CardView: View {
                 print("Error by saving wishlist. CardView.line58")
             }
         }
+        
+        CardNotifications.shared.didPurchaseBook(bookTitle: title)
     }
     
     func makeBookName() {

@@ -147,7 +147,7 @@ struct HomeAllBooksScreen: View {
                     return Card(image: "https://images.unsplash.com/photo-1511108690759-009324a90311?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80", title: "Random fact", price: "free", rating: "none", details: "Random fact", text: fact.fact, isPurchased: true)
                 }
                 books.append(contentsOf: facts)
-
+                
                 updateBooks(data: facts)
             }
         }
@@ -197,8 +197,12 @@ struct HomeAllBooksScreen: View {
             
         }
         .onAppear {
-            Task {
-                getBooks()
+            if !query.isEmpty {
+                sortBooks()
+            } else {
+                Task {
+                    getBooks()
+                }
             }
         }
     }

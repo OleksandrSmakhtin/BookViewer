@@ -14,8 +14,8 @@ struct CardsDoubleView: View {
     func display() {
         for (index, book) in books.enumerated() {
             if index % 2 == 0 {
-                print(books[index].text)
-                print(books[index + 1].text)
+//                print(books[index].text)
+//                print(books[index + 1].text)
             }
         }
     }

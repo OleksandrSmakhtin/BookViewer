@@ -28,6 +28,7 @@ struct NotificationsView: View {
         }
         .padding()
     }
+    
 }
 
 struct NotificationsView_Previews: PreviewProvider {

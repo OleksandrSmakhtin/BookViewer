@@ -16,7 +16,9 @@ struct SignInView: View {
     @Binding var isRegistred: Bool
     
     @State private var userEmail: String? = nil
-
+    
+    @StateObject var viewModel = SignInViewViewModel()
+    
     var body: some View {
         VStack {
             if let email = userEmail {
@@ -38,20 +40,28 @@ struct SignInView: View {
             }
         }
     }
-
+    
     func handleSignInResult(result: GIDSignInResult?, error: Error?) {
-            if let error = error {
-                print("Google sign-in error: \(error.localizedDescription)")
+        if let error = error {
+            print("Google sign-in error: \(error.localizedDescription)")
+            return
+        }
+        
+        if let user = result?.user {
+            guard let email = user.profile?.email else {
                 return
             }
-
-            if let user = result?.user {
-                let email = user.profile?.email
-                userEmail = email
-                DEFAULTS.setValue(userEmail, forKey: "BOOK_USER_EMAIL")
-                isRegistred = true
-                DEFAULTS.setValue(isRegistred, forKey: "BOOK_IS_REGISTERED")
-            }
+            
+            print("Email \(email)")
+            
+            viewModel.hadnleAuth(for: email)
+            
+            userEmail = email
+            DEFAULTS.setValue(userEmail, forKey: "BOOK_USER_EMAIL")
+            isRegistred = true
+            DEFAULTS.setValue(isRegistred, forKey: "BOOK_IS_REGISTERED")
+        }
+        
     }
 }
 

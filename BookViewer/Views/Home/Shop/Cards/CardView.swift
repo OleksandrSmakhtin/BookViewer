@@ -21,7 +21,6 @@ struct CardView: View {
     @State var isPurchased: Bool
     
     var truncatedTitle: String {
-        print(text)
         if title.count <= 30 {
             return title
         } else {
@@ -34,22 +33,24 @@ struct CardView: View {
     @State private var isFullScreen = false
     @State private var isReading = false
     
+    @StateObject var viewModel = BooksViewViewModel()
+    
     func isPurchasedCheck() {
         if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
             do {
                 let savedBoughtBooks = try JSONDecoder().decode([Card].self, from: savedData)
-
+                
                 if savedBoughtBooks.contains(where: { $0.title == title }) {
                     isPurchased = true
                 }
-
+                
                 print("Checked purchased status. CardView.lineXX")
             } catch {
                 print("Error by receiving or checking purchased status. CardView.lineXX")
             }
         }
     }
-
+    
     func purchaseBook() {
         
         isPurchased = true
@@ -92,47 +93,6 @@ struct CardView: View {
         }
     }
     
-    func saveToWishList(isPurchased: Bool) {
-        if let savedData = DEFAULTS.object(forKey: "WISHLIST_DATA") as? Data {
-            do {
-                var savedWishlist = try JSONDecoder().decode([Card].self, from: savedData)
-                
-                print("Received wishlist. CardView.line46")
-                
-                savedWishlist.append(Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: false))
-                
-                do {
-                    let encodedData = try JSONEncoder().encode(savedWishlist)
-                    
-                    DEFAULTS.set(encodedData, forKey: "WISHLIST_DATA")
-                    
-                    print("Saved to wishlist. CardView.line56")
-                } catch {
-                    print("Error by saving to wishlist. CardView.line58")
-                }
-                
-            } catch {
-                print("Error by receiving wishlist. CardView.line48")
-            }
-        } else {
-            
-            var savedWishlist: [Card] = []
-                
-            savedWishlist.append(Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: false))
-                
-             do {
-                let encodedData = try JSONEncoder().encode(savedWishlist)
-                    
-                DEFAULTS.set(encodedData, forKey: "WISHLIST_DATA")
-                    
-                print("Saved to wishlist. CardView.line56")
-             } catch {
-                print("Error by saving to wishlist. CardView.line58")
-             }
-
-        }
-    }
-    
     var body: some View {
         
         VStack {
@@ -159,7 +119,8 @@ struct CardView: View {
                     
                     if isPurchased == false {
                         Button(action: {
-                            saveToWishList(isPurchased: false)
+                            let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
+                            viewModel.addToWishlist(book: model)
                         }, label: {
                             Image(systemName: "plus")
                                 .foregroundColor(.orange)
@@ -170,11 +131,11 @@ struct CardView: View {
             }
         }
         .onAppear {
-             makeBookName()
+            makeBookName()
             
-             if !isPurchased {
-                 isPurchasedCheck()
-             }
+            if !isPurchased {
+                isPurchasedCheck()
+            }
         }
         .frame(width: 180, height: 400, alignment: .center)
         .onTapGesture(count: 1) {
@@ -202,7 +163,7 @@ struct CardView: View {
                 }
                 
                 ScrollView {
-                  
+                    
                     
                     AsyncImage(url: URL(string: image)) { phase in
                         if let image = phase.image {
@@ -249,7 +210,9 @@ struct CardView: View {
                 if isPurchased == false {
                     
                     Button(action: {
-                        purchaseBook()
+                        isPurchased = true
+                        let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
+                        viewModel.addToBooks(book: model)
                     }, label: {
                         Text("Purchase book")
                             .frame(maxWidth: 350)
@@ -262,7 +225,8 @@ struct CardView: View {
                     .padding()
                     
                     Button(action: {
-                        saveToWishList(isPurchased: false)
+                        let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
+                        viewModel.addToWishlist(book: model)
                     }, label: {
                         Text("Add to wishlist")
                             .frame(maxWidth: 350)
@@ -304,7 +268,7 @@ struct CardView: View {
                     })
                     .padding()
                 }
-              
+                
             }
             .background(Color(UIColor.systemBackground))
             .edgesIgnoringSafeArea(.all)

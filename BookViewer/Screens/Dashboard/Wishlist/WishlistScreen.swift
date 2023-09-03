@@ -13,6 +13,9 @@ struct WishlistScreen: View {
     
     @State var wishlist: [Card] = []
     
+    @StateObject var viewModel = BooksViewViewModel()
+    
+    //MARK: - REMOVE FROM WISHLIST
     func removeFromWishlist(card: Card) {
         wishlist.removeAll { $0 == card }
 
@@ -21,20 +24,6 @@ struct WishlistScreen: View {
             DEFAULTS.set(encodedData, forKey: "WISHLIST_DATA")
         } catch {
             print("Error saving updated wishlist. WishlistScreen.line57")
-        }
-    }
-    
-    func getWishlist() {
-        if let savedData = DEFAULTS.object(forKey: "WISHLIST_DATA") as? Data {
-            do {
-                var savedWishlist = try JSONDecoder().decode([Card].self, from: savedData)
-                
-                wishlist = savedWishlist
-                
-                print("Received wishlist. CardView.line46")
-            } catch {
-                print("Error by receiving wishlist. CardView.line48")
-            }
         }
     }
     
@@ -59,7 +48,18 @@ struct WishlistScreen: View {
             }
     
         }.onAppear {
-            getWishlist()
+            guard let email = UserDefaults.standard.string(forKey: "BOOK_USER_EMAIL") else { return }
+            
+            DatabaseManager.shared.collectionWishlist(email: email) { result in
+                switch result {
+                case .success(let cards):
+                    wishlist = cards
+                    print(cards)
+                
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
     

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct DashboardScreen: View {
     
-    @State var selectedScreen = 0
     @State var isTagOpened = false
-    @State var tagValue = ""
     @State var resetTag = false
+    
+    @State var tagValue = ""
+    @State var selectedScreen = 0
     
     private let tags: [Tag] = [
         Tag(value: "Shevchenko"),

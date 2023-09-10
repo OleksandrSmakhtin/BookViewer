@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 struct WishlistCardView: View {
+    
+    
+    
     
     let DEFAULTS = UserDefaults.standard
     
@@ -18,6 +22,11 @@ struct WishlistCardView: View {
     let details: String
     let text: String
     @State var isPurchased: Bool
+    
+    //MARK: - viewModel
+    @StateObject var viewModel = BooksViewViewModel()
+    
+    
     
     var truncatedTitle: String {
         if title.count <= 30 {
@@ -126,6 +135,8 @@ struct WishlistCardView: View {
                 .padding()
                 
                 HStack {
+                    
+                    //MARK: - Delete btn
                     Button(action: {}, label: {
                         Button(action: {
                             removeFromWishlist()

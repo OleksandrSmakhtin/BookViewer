@@ -9,35 +9,10 @@ import SwiftUI
 
 struct UserBooksScreen: View {
     
-    let DEFAULTS = UserDefaults.standard
+    @StateObject var viewModel = BooksViewViewModel()
     
     @State var books: [Card] = []
     
-//    func getWishlist() {
-//        if let savedData = DEFAULTS.object(forKey: "BOUGHT_BOOKS_DATA") as? Data {
-//            do {
-//                var savedWishlist = try JSONDecoder().decode([Card].self, from: savedData)
-//
-//                var goodWishlist: [Card] = []
-//
-//                for wish in savedWishlist {
-//                    if wish.title.lowercased() != "random joke" {
-//                        if wish.title.lowercased() != "random quote" {
-//                            if wish.title.lowercased() != "random fact" {
-//                                goodWishlist.append(wish)
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                wishlist = goodWishlist
-//
-//                print("Received wishlist. CardView.line46")
-//            } catch {
-//                print("Error by receiving wishlist. CardView.line48")
-//            }
-//        }
-//    }
     
     var body: some View {
         
@@ -81,20 +56,14 @@ struct UserBooksScreen: View {
                 }
                 
             }
-            
-        }.onAppear {
-            guard let email = UserDefaults.standard.string(forKey: "BOOK_USER_EMAIL") else { return }
-            
-            DatabaseManager.shared.collectionBooks(email: email) { result in
-                switch result {
-                case .success(let cards):
-                    books = cards
-                    print(cards)
-                
-                case .failure(let error):
-                    print(error)
-                }
-            }
+        }
+        //MARK: - Get Books
+        .onAppear {
+            viewModel.getBooks()
+        }
+        //MARK: - Bind books
+        .onReceive(viewModel.$books) { books in
+            self.books = books
         }
         
     }

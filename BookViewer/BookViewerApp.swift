@@ -31,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             
         }
         notificationCenter.delegate = self
-        
+         
         return true
     }
     

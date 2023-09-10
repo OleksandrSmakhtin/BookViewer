@@ -30,6 +30,7 @@ struct AccountPersonalInfoScreen: View {
             
             VStack {
                 HStack {
+                    // text field
                     TextField("name", text: $name)
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -38,7 +39,9 @@ struct AccountPersonalInfoScreen: View {
                         .textCase(.lowercase)
                     Text("@gmail.com")
                 }
-                .padding()
+                .padding(.top, 0)
+                
+                // change btn
                 Button(action: {
                     changeName()
                 }, label: {
@@ -48,6 +51,33 @@ struct AccountPersonalInfoScreen: View {
                         .foregroundColor(Color.primary)
                         .cornerRadius(10)
                 })
+                .padding(.bottom, 100)
+                
+                HStack(alignment: .bottom, spacing: 30) {
+                    Button(action: {
+                        changeName()
+                    }, label: {
+                        Text("Sign out")
+                            .frame(width: 120, height: 20, alignment: .center)
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(.white)
+                            .border(.black)
+                            .cornerRadius(10)
+                    })
+                    Button(action: {
+                        changeName()
+                    }, label: {
+                        Text("Delete account")
+                            .frame(width: 120, height: 20, alignment: .center)
+                            .foregroundColor(.red)
+                            .padding()
+                            .background(.white)
+                            .border(.red)
+                            .cornerRadius(10)
+                    })
+                }.padding(.top, 300)
+                
             }
             
             Spacer()

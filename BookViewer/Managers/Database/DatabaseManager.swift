@@ -67,6 +67,13 @@ class DatabaseManager {
         }.eraseToAnyPublisher()
     }
     
+    // delete
+    func collectionWishlist(delete book: Card, for email: String) -> AnyPublisher<Bool, Error> {
+        db.collection("\(usersPath)/\(email)\(wishlistPath)").document(book.title).delete().map { _ in
+            return true
+        }.eraseToAnyPublisher()
+    }
+    
     // get
     func collectionWishlist(email: String, completion: @escaping (Result<[Card], Error>) -> Void) {
         db.collection("\(usersPath)/\(email)\(wishlistPath)").getDocuments { querySnapshot, error in
@@ -100,10 +107,16 @@ class DatabaseManager {
     }
     
     // MARK: - Bought books
-    
     // Add
     func collectionBooks(add book: Card, for email: String) -> AnyPublisher<Bool, Error> {
         return db.collection("\(usersPath)/\(email)\(booksPath)").document(book.title).setData(from: book).map { _ in
+            return true
+        }.eraseToAnyPublisher()
+    }
+    
+    // delete
+    func collectionBooks(delete book: Card, for email: String) -> AnyPublisher<Bool, Error> {
+        db.collection("\(usersPath)/\(email)\(booksPath)").document(book.title).delete().map { _ in
             return true
         }.eraseToAnyPublisher()
     }

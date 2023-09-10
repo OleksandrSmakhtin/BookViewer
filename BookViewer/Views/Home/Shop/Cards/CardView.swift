@@ -119,6 +119,7 @@ struct CardView: View {
                     
                     if isPurchased == false {
                         Button(action: {
+                            //MARK: - Adding to whish list
                             let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
                             viewModel.addToWishlist(book: model)
                         }, label: {
@@ -211,6 +212,8 @@ struct CardView: View {
                     
                     Button(action: {
                         isPurchased = true
+                        
+                        //MARK: - Adding to books
                         let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
                         viewModel.addToBooks(book: model)
                     }, label: {
@@ -225,6 +228,7 @@ struct CardView: View {
                     .padding()
                     
                     Button(action: {
+                        //MARK: - Adding to whishlist
                         let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
                         viewModel.addToWishlist(book: model)
                     }, label: {

@@ -215,6 +215,8 @@ struct CardView: View {
                         
                         //MARK: - Adding to books
                         let model = Card(image: image, title: title, price: price, rating: rating, details: details, text: text, isPurchased: isPurchased)
+                        
+                        viewModel.deleteWishlist(book: model)
                         viewModel.addToBooks(book: model)
                     }, label: {
                         Text("Purchase book")

@@ -21,7 +21,6 @@ class DatabaseManager {
     private let wishlistPath = "/wishlist"
     private let booksPath = "/books"
     
-    
     // MARK: - Users
     // add
     func collectionUsers(add user: BookUser) -> AnyPublisher<Bool, Error> {
@@ -32,6 +31,7 @@ class DatabaseManager {
     }
     
     // get
+    //TODO: Rewrite the following function using combine
     func collectionUsers(completion: @escaping (Result<[BookUser], Error>) -> Void) {
         db.collection(usersPath).getDocuments { querySnapshot, error in
             

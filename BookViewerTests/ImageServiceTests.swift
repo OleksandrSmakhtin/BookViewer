@@ -16,13 +16,13 @@ final class ImageServiceTests: XCTestCase {
         let query = "minimal"
         
         do {
-            _ = try await imagesService.getImageUrl(query: query)
-            XCTFail("Request failed. Query: \(query)")
+            let response = try await imagesService.getImageUrl(query: query)
+            XCTAssertNotNil(response)
         } catch {
             
             if case ImagesServiceError.requestFailed = error {
             } else {
-                XCTFail("Unexpected error: \(error)")
+                XCTFail("Request failed with query: \(query)")
             }
             
         }

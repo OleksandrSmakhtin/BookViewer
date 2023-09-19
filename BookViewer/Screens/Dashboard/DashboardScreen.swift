@@ -80,6 +80,8 @@ struct DashboardScreen: View {
                 .accentColor(.orange)
             }
         }
+        .onAppear {
+        }
         
     }
 }

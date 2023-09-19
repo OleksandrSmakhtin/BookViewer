@@ -17,6 +17,7 @@ struct WishlistScreen: View {
     //MARK: - REMOVE FROM WISHLIST
     func removeFromWishlist(card: Card) {
         viewModel.deleteWishlist(book: card)
+        viewModel.addToBooks(book: card)
     }
     
     //MARK: - Body

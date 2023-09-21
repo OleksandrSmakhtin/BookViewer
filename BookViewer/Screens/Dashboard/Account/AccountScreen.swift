@@ -13,7 +13,6 @@ struct AccountScreen: View {
     let accountHelpers = AccountHelpersClass()
     
     let items: [NavAccount] = [
-        NavAccount(title: "Personal info", icon: "person.crop.circle"),
         NavAccount(title: "Notifications", icon: "bell"),
         NavAccount(title: "Help center", icon: "book.closed"),
         NavAccount(title: "About app", icon: "info.circle"),
@@ -58,8 +57,6 @@ struct AccountScreen: View {
                 ForEach(items) { item in
                     NavigationLink(destination: {
                         switch item.title {
-                            case "Personal info":
-                                  AccountPersonalInfoScreen(name: name)
                             case "Preferences":
                                   AccountSettingsScreen()
                             case  "Notifications":
@@ -84,13 +81,6 @@ struct AccountScreen: View {
                 }
             }
         }
-//        .onAppear {
-//            email = DEFAUTLS.string(forKey: "BOOK_USER_EMAIL") ?? ""
-//            if email.isEmpty {
-//                email = "user@gmail.com"
-//            }
-//            name = accountHelpers.extractName(from: email)
-//        }
     }
 }
 

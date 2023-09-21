@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct AccountSettingsScreen: View {
     
     let settings: [Setting] = [
         Setting(value: "Display book's full title")
     ]
+    
+    @StateObject var viewModel = LoginViewViewModel()
     
     let DEFAULTS = UserDefaults.standard
     
@@ -46,6 +50,32 @@ struct AccountSettingsScreen: View {
             .padding()
             
             Spacer()
+            
+            HStack {
+                Button(action: {
+                    try? Auth.auth().signOut()
+                    DEFAULTS.setValue(false, forKey: "BOOK_IS_REGISTERED")
+                }, label: {
+                    Text("Sign Out")
+                        .frame(width: 120, height: 25, alignment: .center)
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                })
+                Button(action: {
+                    viewModel.deleteUser()
+                    DEFAULTS.setValue(false, forKey: "BOOK_IS_REGISTERED")
+                }, label: {
+                    Text("Delete Account")
+                        .frame(width: 120, height: 25, alignment: .center)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                })
+            }
+
         }
         .padding()
     }

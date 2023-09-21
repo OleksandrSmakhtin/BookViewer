@@ -11,7 +11,6 @@
 		E0024CA82A90FED4001576A6 /* FactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0024CA72A90FED4001576A6 /* FactsViewModel.swift */; };
 		E0132F722A7FCCDE00715060 /* CardsDoubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F712A7FCCDE00715060 /* CardsDoubleView.swift */; };
 		E0132F742A7FF71100715060 /* HomeTopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F732A7FF71100715060 /* HomeTopScreen.swift */; };
-		E0132F762A8015F500715060 /* AccountPersonalInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F752A8015F500715060 /* AccountPersonalInfoScreen.swift */; };
 		E0132F782A80160600715060 /* AccountSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0132F772A80160600715060 /* AccountSettingsScreen.swift */; };
 		E02CE7462A7BC8D800ED7B17 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02CE7452A7BC8D800ED7B17 /* LoginScreen.swift */; };
 		E02CE74A2A7BC92800ED7B17 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02CE7492A7BC92800ED7B17 /* AccountScreen.swift */; };
@@ -21,6 +20,8 @@
 		E03C6F4F2A8F653100D535FB /* QuotesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C6F4E2A8F653100D535FB /* QuotesService.swift */; };
 		E03C6F512A8F663200D535FB /* QuotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C6F502A8F663200D535FB /* QuotesViewModel.swift */; };
 		E0592FB32A93BA9F00CC0D8C /* CardNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0592FB22A93BA9F00CC0D8C /* CardNotifications.swift */; };
+		E05948682ABA03C300FA33D9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05948672ABA03C300FA33D9 /* AuthManager.swift */; };
+		E059486A2ABA03FD00FA33D9 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05948692ABA03FD00FA33D9 /* LoginViewViewModel.swift */; };
 		E08B1BE42A7D2B3800063E3E /* DashboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B1BE32A7D2B3800063E3E /* DashboardScreen.swift */; };
 		E08B1BE62A7D2BA100063E3E /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B1BE52A7D2BA100063E3E /* HomeScreen.swift */; };
 		E08B1BE82A7D2C0E00063E3E /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B1BE72A7D2C0E00063E3E /* TabButtonView.swift */; };
@@ -119,7 +120,6 @@
 		E0024CA72A90FED4001576A6 /* FactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewModel.swift; sourceTree = "<group>"; };
 		E0132F712A7FCCDE00715060 /* CardsDoubleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDoubleView.swift; sourceTree = "<group>"; };
 		E0132F732A7FF71100715060 /* HomeTopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopScreen.swift; sourceTree = "<group>"; };
-		E0132F752A8015F500715060 /* AccountPersonalInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPersonalInfoScreen.swift; sourceTree = "<group>"; };
 		E0132F772A80160600715060 /* AccountSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsScreen.swift; sourceTree = "<group>"; };
 		E02CE7452A7BC8D800ED7B17 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		E02CE7492A7BC92800ED7B17 /* AccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountScreen.swift; sourceTree = "<group>"; };
@@ -130,6 +130,8 @@
 		E03C6F4E2A8F653100D535FB /* QuotesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesService.swift; sourceTree = "<group>"; };
 		E03C6F502A8F663200D535FB /* QuotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesViewModel.swift; sourceTree = "<group>"; };
 		E0592FB22A93BA9F00CC0D8C /* CardNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNotifications.swift; sourceTree = "<group>"; };
+		E05948672ABA03C300FA33D9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		E05948692ABA03FD00FA33D9 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		E08B1BE32A7D2B3800063E3E /* DashboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreen.swift; sourceTree = "<group>"; };
 		E08B1BE52A7D2BA100063E3E /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		E08B1BE72A7D2C0E00063E3E /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
@@ -295,11 +297,39 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		E059486B2ABA0DE500FA33D9 /* BasicModels */ = {
+			isa = PBXGroup;
+			children = (
+				E08B1BF22A7D35F400063E3E /* CardModel.swift */,
+				E08B1BFB2A7ED24300063E3E /* NotificationModel.swift */,
+				E0FE26032A7FBD8C00623C03 /* NavAccountModel.swift */,
+				E0B76B0A2A80EFF000548AE3 /* SettingModel.swift */,
+				E0FA64572A84F78E00E89F84 /* HelpFaqModel.swift */,
+				E0FA64592A85531200E89F84 /* HelpContactModel.swift */,
+				E0FA645D2A86533700E89F84 /* PropertyModel.swift */,
+				E0D351AF2A8FC78E009B3436 /* AuthorModel.swift */,
+				E0FCF93C2AA486EB00ACA88E /* BookUser.swift */,
+			);
+			path = BasicModels;
+			sourceTree = "<group>";
+		};
+		E059486C2ABA0E1D00FA33D9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E08C6C152A8E106D004B356B /* JokesViewModel.swift */,
+				E03C6F502A8F663200D535FB /* QuotesViewModel.swift */,
+				E0024CA72A90FED4001576A6 /* FactsViewModel.swift */,
+				E0FCF93E2AA4871F00ACA88E /* SignInViewViewModel.swift */,
+				E0FCF9402AA4874A00ACA88E /* BooksViewViewModel.swift */,
+				E05948692ABA03FD00FA33D9 /* LoginViewViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		E08B1BE22A7D2B2100063E3E /* Account */ = {
 			isa = PBXGroup;
 			children = (
 				E02CE7492A7BC92800ED7B17 /* AccountScreen.swift */,
-				E0132F752A8015F500715060 /* AccountPersonalInfoScreen.swift */,
 				E0132F772A80160600715060 /* AccountSettingsScreen.swift */,
 				E0FA64502A84EF2300E89F84 /* AccountHelpScreen.swift */,
 				E0FA645B2A8651C100E89F84 /* AccountAboutScreen.swift */,
@@ -328,20 +358,8 @@
 		E08B1BF12A7D35DD00063E3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E08B1BF22A7D35F400063E3E /* CardModel.swift */,
-				E08B1BFB2A7ED24300063E3E /* NotificationModel.swift */,
-				E0FE26032A7FBD8C00623C03 /* NavAccountModel.swift */,
-				E0B76B0A2A80EFF000548AE3 /* SettingModel.swift */,
-				E0FA64572A84F78E00E89F84 /* HelpFaqModel.swift */,
-				E0FA64592A85531200E89F84 /* HelpContactModel.swift */,
-				E0FA645D2A86533700E89F84 /* PropertyModel.swift */,
-				E08C6C152A8E106D004B356B /* JokesViewModel.swift */,
-				E03C6F502A8F663200D535FB /* QuotesViewModel.swift */,
-				E0D351AF2A8FC78E009B3436 /* AuthorModel.swift */,
-				E0024CA72A90FED4001576A6 /* FactsViewModel.swift */,
-				E0FCF93C2AA486EB00ACA88E /* BookUser.swift */,
-				E0FCF93E2AA4871F00ACA88E /* SignInViewViewModel.swift */,
-				E0FCF9402AA4874A00ACA88E /* BooksViewViewModel.swift */,
+				E059486C2ABA0E1D00FA33D9 /* ViewModels */,
+				E059486B2ABA0DE500FA33D9 /* BasicModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -536,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				E0FCF93A2AA486D300ACA88E /* DatabaseManager.swift */,
+				E05948672ABA03C300FA33D9 /* AuthManager.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -769,6 +788,7 @@
 				E08C6C182A8E1931004B356B /* HomeJokesScreen.swift in Sources */,
 				E08B1BE42A7D2B3800063E3E /* DashboardScreen.swift in Sources */,
 				E0FA64612A877E9E00E89F84 /* ReadView.swift in Sources */,
+				E05948682ABA03C300FA33D9 /* AuthManager.swift in Sources */,
 				E0FA645A2A85531200E89F84 /* HelpContactModel.swift in Sources */,
 				E0FCF93B2AA486D300ACA88E /* DatabaseManager.swift in Sources */,
 				E08B1BF32A7D35F400063E3E /* CardModel.swift in Sources */,
@@ -778,7 +798,7 @@
 				E02F7AE42A815AF30073520E /* WishlistScreen.swift in Sources */,
 				E08B1BFF2A7ED31A00063E3E /* NotificationView.swift in Sources */,
 				E0024CA82A90FED4001576A6 /* FactsViewModel.swift in Sources */,
-				E0132F762A8015F500715060 /* AccountPersonalInfoScreen.swift in Sources */,
+				E059486A2ABA03FD00FA33D9 /* LoginViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

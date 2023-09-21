@@ -31,7 +31,6 @@ class DatabaseManager {
     }
     
     // get
-    //TODO: Rewrite the following function using combine
     func collectionUsers(completion: @escaping (Result<[BookUser], Error>) -> Void) {
         db.collection(usersPath).getDocuments { querySnapshot, error in
             
@@ -56,6 +55,13 @@ class DatabaseManager {
             
             completion(.success(users))
         }
+    }
+    
+    // delete
+    func collectionUsers(delete email: String) -> AnyPublisher<Bool, Error> {
+        db.collection(usersPath).document(email).delete().map { _ in
+            return true
+        }.eraseToAnyPublisher()
     }
     
     // MARK: - Wish list

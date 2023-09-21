@@ -18,13 +18,19 @@ struct MainScreen: View {
             if isRegistered {
                 DashboardScreen()
             } else {
-                LoginScreen()
+                LoginScreen(isRegistered: $isRegistered)
                 SignInView(isRegistred: $isRegistered)
             }
         }
         .onAppear {
             withAnimation {
-                isRegistered = DEFAULTS.bool(forKey: "BOOK_IS_REGISTERED")
+                // Start a timer that fires every 2 seconds
+                let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+                    // Fetch the value from UserDefaults
+                    isRegistered = UserDefaults.standard.bool(forKey: "BOOK_IS_REGISTERED")
+                }
+                // Ensure the timer is scheduled on the main run loop
+                RunLoop.main.add(timer, forMode: .common)
             }
         }
     }

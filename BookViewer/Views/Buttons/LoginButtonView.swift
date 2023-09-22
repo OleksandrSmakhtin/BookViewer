@@ -12,13 +12,24 @@ struct LoginButtonView: View {
     let text: String
     let icon: String
     
+    let isIcon: Bool
+    
     var body: some View {
         HStack {
-            Image(icon)
-                .resizable()
-                .frame(width: 30, height: 30)
-            Text(text)
-                .foregroundColor(Color.primary)
+            if isIcon {
+                Image(systemName: icon.isEmpty ? "" : icon)
+                    .resizable()
+                    .frame(width: 30, height: 20)
+                    .foregroundColor(.primary)
+                Text(text)
+                    .foregroundColor(Color.primary)
+            } else {
+                Image(icon)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                Text(text)
+                    .foregroundColor(Color.primary)
+            }
         }
         .frame(width: 300)
         .padding(20)
@@ -32,6 +43,6 @@ struct LoginButtonView: View {
 
 struct LoginButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginButtonView(text: "Countiue with Google", icon: "GoogleLogo")
+        LoginButtonView(text: "Countiue with Google", icon: "GoogleLogo", isIcon: false)
     }
 }

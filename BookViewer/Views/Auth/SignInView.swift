@@ -34,7 +34,7 @@ struct SignInView: View {
                         handleSignInResult(result: user, error: error)
                     }
                 }) {
-                    LoginButtonView(text: "Countiue with Google", icon: "GoogleLogo")
+                    LoginButtonView(text: "Countiue with Google", icon: "GoogleLogo", isIcon: false)
                         .padding()
                 }
             }

@@ -18,8 +18,12 @@ struct MainScreen: View {
             if isRegistered {
                 DashboardScreen()
             } else {
-                LoginScreen(isRegistered: $isRegistered)
-                SignInView(isRegistred: $isRegistered)
+                LoginScreen()
+                ScrollView {
+                    SignInView(isRegistred: $isRegistered)
+                    EmailSignInView(isRegistered: $isRegistered)
+                }
+                .frame(height: 200)
             }
         }
         .onAppear {

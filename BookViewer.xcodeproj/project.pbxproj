@@ -22,6 +22,7 @@
 		E0592FB32A93BA9F00CC0D8C /* CardNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0592FB22A93BA9F00CC0D8C /* CardNotifications.swift */; };
 		E05948682ABA03C300FA33D9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05948672ABA03C300FA33D9 /* AuthManager.swift */; };
 		E059486A2ABA03FD00FA33D9 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05948692ABA03FD00FA33D9 /* LoginViewViewModel.swift */; };
+		E05F6BC22ABE029600DCF81F /* EmailSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F6BC12ABE029600DCF81F /* EmailSignInView.swift */; };
 		E08B1BE42A7D2B3800063E3E /* DashboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B1BE32A7D2B3800063E3E /* DashboardScreen.swift */; };
 		E08B1BE62A7D2BA100063E3E /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B1BE52A7D2BA100063E3E /* HomeScreen.swift */; };
 		E08B1BE82A7D2C0E00063E3E /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B1BE72A7D2C0E00063E3E /* TabButtonView.swift */; };
@@ -132,6 +133,7 @@
 		E0592FB22A93BA9F00CC0D8C /* CardNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNotifications.swift; sourceTree = "<group>"; };
 		E05948672ABA03C300FA33D9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		E05948692ABA03FD00FA33D9 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
+		E05F6BC12ABE029600DCF81F /* EmailSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInView.swift; sourceTree = "<group>"; };
 		E08B1BE32A7D2B3800063E3E /* DashboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreen.swift; sourceTree = "<group>"; };
 		E08B1BE52A7D2BA100063E3E /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		E08B1BE72A7D2C0E00063E3E /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				E0939D0B2A7C2BC8003F6D1F /* SignInView.swift */,
+				E05F6BC12ABE029600DCF81F /* EmailSignInView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				E08C6C142A8E0FDE004B356B /* JokesService.swift in Sources */,
 				E08B1BFC2A7ED24300063E3E /* NotificationModel.swift in Sources */,
 				E0FA64562A84F72600E89F84 /* AccountHelpContactView.swift in Sources */,
+				E05F6BC22ABE029600DCF81F /* EmailSignInView.swift in Sources */,
 				E0132F722A7FCCDE00715060 /* CardsDoubleView.swift in Sources */,
 				E0FCF9412AA4874A00ACA88E /* BooksViewViewModel.swift in Sources */,
 				E0D351B02A8FC78E009B3436 /* AuthorModel.swift in Sources */,

@@ -11,19 +11,15 @@ struct MainScreen: View {
     
     let DEFAULTS = UserDefaults.standard
     
-    @State var isRegistered = false
+    @State var isRegistered = UserDefaults.standard.bool(forKey: "BOOK_IS_REGISTERED")
     
     var body: some View {
         VStack {
             if isRegistered {
                 DashboardScreen()
             } else {
-                LoginScreen()
-                ScrollView {
-                    SignInView(isRegistred: $isRegistered)
-                    EmailSignInView(isRegistered: $isRegistered)
-                }
-                .frame(height: 200)
+                LoginScreen(isRegistered: $isRegistered)
+                SignInView(isRegistred: $isRegistered)
             }
         }
         .onAppear {

@@ -22,16 +22,14 @@ final class BooksViewViewModel: ObservableObject {
     func getWishlist() {
         guard let email = UserDefaults.standard.string(forKey: "BOOK_USER_EMAIL") else { return }
         
-        DatabaseManager.shared.collectionWishlist(email: email) { result in
-            switch result {
-            case .success(let cards):
-                self.wishlist = cards
-                print(cards)
-            
-            case .failure(let error):
-                print(error)
+        DatabaseManager.shared.collectionWishlist(for: email).sink { [weak self] completion in
+            if case .failure(let error) = completion {
+                print(error.localizedDescription)
+                self?.error = error.localizedDescription
             }
-        }
+        } receiveValue: { [weak self] wishlist in
+            self?.wishlist = wishlist
+        }.store(in: &subscriptions)
     }
     
     // add to wish list
@@ -69,16 +67,14 @@ final class BooksViewViewModel: ObservableObject {
     func getBooks() {
         guard let email = UserDefaults.standard.string(forKey: "BOOK_USER_EMAIL") else { return }
         
-        DatabaseManager.shared.collectionBooks(email: email) { result in
-            switch result {
-            case .success(let cards):
-                self.books = cards
-                print(cards)
-            
-            case .failure(let error):
-                print(error)
+        DatabaseManager.shared.collectionBooks(for: email).sink { [weak self] completion in
+            if case .failure(let error) = completion {
+                print(error.localizedDescription)
+                self?.error = error.localizedDescription
             }
-        }
+        } receiveValue: { [weak self] books in
+            self?.books = books
+        }.store(in: &subscriptions)
     }
     
     // add to bought books

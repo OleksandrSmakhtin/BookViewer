@@ -24,21 +24,44 @@ struct SignInView: View {
             if let email = userEmail {
                 Text("\(email)")
             } else {
-                Button(action: {
-                    guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                          let window = scene.windows.first,
-                          let presentingViewController = window.rootViewController else {
-                        return print("Error: Can't get presenting view controller")
+                HStack {
+                    //MARK: - Google
+                    Button(action: {
+                        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                              let window = scene.windows.first,
+                              let presentingViewController = window.rootViewController else {
+                            return print("Error: Can't get presenting view controller")
+                        }
+                        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { user, error in
+                            handleSignInResult(result: user, error: error)
+                        }
+                    }) {
+                        LoginButtonView(icon: "GoogleLogo")
+                            .padding()
                     }
-                    GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { user, error in
-                        handleSignInResult(result: user, error: error)
+                    //MARK: - FaceBook
+                    Button(action: {
+                        //
+                    }) {
+                        LoginButtonView(icon: "FacebookLogo")
+                            .padding()
                     }
-                }) {
-                    LoginButtonView(text: "Countiue with Google", icon: "GoogleLogo", isIcon: false)
-                        .padding()
+                    //MARK: - Apple
+                    Button(action: {
+                        //
+                    }) {
+                        LoginButtonView(icon: "AppleLogo")
+                            .padding()
+                    }
                 }
             }
         }
+        .onAppear {
+            viewModel.getUsers()
+        }
+        .onReceive(viewModel.$users, perform: { users in
+            print(users)
+        })
     }
     
     func handleSignInResult(result: GIDSignInResult?, error: Error?) {

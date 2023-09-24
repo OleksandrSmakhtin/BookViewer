@@ -16,6 +16,8 @@ final class SignInViewViewModel: ObservableObject {
     
     private var subscriptions: Set<AnyCancellable> = []
     
+    
+    //MARK: - Add users
     private func addUser(with email: String) {
         
         let formatter = DateFormatter()
@@ -37,28 +39,28 @@ final class SignInViewViewModel: ObservableObject {
     }
     
     
-    func hadnleAuth(for email: String) {
-        
-        DatabaseManager.shared.collectionUsers { result in
-            
-            switch result {
-            case .success(let users):
-                
-                let user = users.first { $0.email == email }
-                
-                if user != nil {
-                    print("USER EXISTS")
-                } else {
-                    print("USER DO NOT EXIST")
-                    self.addUser(with: email)
-                }
-            
-            case .failure(let error):
-                print(error)
+    //MARK: - Get users
+    func getUsers() {
+        DatabaseManager.shared.collectionUsers().sink { [weak self] completion in
+            if case .failure(let error) = completion {
+                print(error.localizedDescription)
+                self?.error = error.localizedDescription
             }
-            
-        }
+        } receiveValue: { [weak self] bookUsers in
+            self?.users = bookUsers
+        }.store(in: &subscriptions)
+    }
+    
+    //MARK: - Handle auth
+    func hadnleAuth(for email: String) {
+        let user = users.first { $0.email == email }
         
+        if user != nil {
+            print("USER EXISTS")
+        } else {
+            print("USER DO NOT EXIST")
+            self.addUser(with: email)
+        }
     }
     
 }

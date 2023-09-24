@@ -73,7 +73,7 @@ struct EmailSignInView: View {
                 Button(action: {
                     isSelected = true
                 }, label: {
-                    LoginButtonView(text: "Continue with email", icon: "envelope.fill", isIcon: true)
+                    LoginButtonView(icon: "envelope.fill")
                 })
             }
             

@@ -9,29 +9,15 @@ import SwiftUI
 
 struct LoginButtonView: View {
     
-    let text: String
     let icon: String
-    
-    let isIcon: Bool
-    
+        
     var body: some View {
         HStack {
-            if isIcon {
-                Image(systemName: icon.isEmpty ? "" : icon)
-                    .resizable()
-                    .frame(width: 30, height: 20)
-                    .foregroundColor(.primary)
-                Text(text)
-                    .foregroundColor(Color.primary)
-            } else {
-                Image(icon)
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                Text(text)
-                    .foregroundColor(Color.primary)
-            }
+            Image(icon)
+                .resizable()
+                .frame(width: 40, height: 40)
         }
-        .frame(width: 300)
+        .frame(width: 40)
         .padding(20)
         .overlay(
             RoundedRectangle(cornerRadius: 50)
@@ -43,6 +29,6 @@ struct LoginButtonView: View {
 
 struct LoginButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginButtonView(text: "Countiue with Google", icon: "GoogleLogo", isIcon: false)
+        LoginButtonView(icon: "AppleLogo")
     }
 }
